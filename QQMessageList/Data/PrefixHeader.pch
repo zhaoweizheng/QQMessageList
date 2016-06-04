@@ -1,0 +1,75 @@
+//
+//  PrefixHeader.pch
+//  QQMessageList
+//
+//  Created by apple on 16/5/29.
+//  Copyright © 2016年 赵伟争. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+
+#import "PublicMethod.h"
+#import "Masonry.h"
+
+
+
+//***** ***** ***** ***** ***** other ***** ***** ***** ***** *****/
+#define APP_DELEGATE ((AppDelegate *)[UIApplication sharedApplication].delegate)
+//App 版本号
+#define APP_VERSION [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
+
+// RGB颜色
+#define RGB(r,g,b) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1]
+
+// 导航栏高度
+#define NAVIGATION_BAR_HEIGHT (20+44)
+
+// 标签栏高度
+#define TAB_BAR_HEIGHT 49
+
+#define SCREEN_WIDTH  ([UIScreen mainScreen].bounds.size.width)
+#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+
+// 系统版本
+#define SYSTEM_VERSION [[[UIDevice currentDevice] systemVersion] doubleValue]
+#define DATABASE_ENGINE       [DatabaseEngine sharedEngine]
+
+// 导航栏右按钮
+#define NAVIGATION_BAR_RIGHT_BUTTON(x, y, w, h, normal, selected, sel)\
+{\
+UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];\
+button.frame = CGRectMake(x, y, w, h);\
+[button setImage:[UIImage imageNamed:normal] forState:UIControlStateNormal];\
+[button setImage:[UIImage imageNamed:selected] forState:UIControlStateHighlighted];\
+[button addTarget:self action:@selector(sel) forControlEvents:UIControlEventTouchUpInside];\
+UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithCustomView:button];\
+self.navigationItem.rightBarButtonItem = buttonItem;\
+}
+
+
+// 导航栏左按钮
+#define NAVIGATION_BAR_LEFT_BUTTON(x, y, w, h, normal, selected, sel)\
+{\
+UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];\
+button.frame = CGRectMake(x, y, w, h);\
+[button setImage:[UIImage imageNamed:normal] forState:UIControlStateNormal];\
+[button setImage:[UIImage imageNamed:selected] forState:UIControlStateSelected];\
+[button addTarget:self action:@selector(sel) forControlEvents:UIControlEventTouchUpInside];\
+UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithCustomView:button];\
+self.navigationItem.leftBarButtonItem = buttonItem;\
+}
+
+// RGB颜色
+#define RGB(r,g,b) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1]
+
+//二进制颜色值
+#define kUIColorFromRGB(rgbValue) [UIColor \
+colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
+blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
+//字体
+#define KFont(i)  [UIFont systemFontOfSize:i]
+#endif /* PrefixHeader_pch */
